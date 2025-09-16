@@ -16,7 +16,7 @@ if (window.matchMedia("(pointer: fine)").matches) {
     document.addEventListener('mousemove', e => {
         cursor.setAttribute("style", "top: "+(e.pageY - scrollY)+"px; left: "+e.pageX+"px;")
     });
-    document.querySelectorAll('a, button, .hamburger').forEach(el => {
+    document.querySelectorAll('a, button, .hamburger, .project-card').forEach(el => {
         el.addEventListener('mouseenter', () => cursor.classList.add('grow'));
         el.addEventListener('mouseleave', () => cursor.classList.remove('grow'));
     });
@@ -25,19 +25,19 @@ if (window.matchMedia("(pointer: fine)").matches) {
 
 // --- Scroll Animations with GSAP ---
 gsap.registerPlugin(ScrollTrigger);
-// Animate sections
-document.querySelectorAll('.content-section').forEach(section => {
-    gsap.from(section.querySelectorAll('.section-container > *'), {
+// Animate sections and cards
+document.querySelectorAll('.content-section, .grid-card').forEach(el => {
+    gsap.from(el.querySelectorAll('.section-container > *, h3, h4, p, img, .card-icon'), {
         scrollTrigger: {
-            trigger: section,
-            start: "top 80%",
-            end: "bottom 20%",
+            trigger: el,
+            start: "top 85%",
+            end: "bottom 15%",
             toggleActions: "play none none none"
         },
         opacity: 0,
         y: 40,
         duration: 0.8,
-        stagger: 0.2,
+        stagger: 0.1,
         ease: "power3.out"
     });
 });
@@ -54,25 +54,18 @@ gsap.from('.anim-on-load', {
 
 // --- 3D Tilt Effect for Project Cards ---
 const tiltElements = document.querySelectorAll("[data-tilt]");
-const tiltConfig = {
-    max: 10,
-    speed: 400,
-    glare: true,
-    "max-glare": 0.5,
-    perspective: 1000
-};
 const initTilt = (e) => {
     const card = e.currentTarget;
     const { width, height, left, top } = card.getBoundingClientRect();
     const x = e.clientX - left;
     const y = e.clientY - top;
-    const rotateX = (tiltConfig.max / (height / 2)) * (y - height / 2);
-    const rotateY = -(tiltConfig.max / (width / 2)) * (x - width / 2);
+    const rotateX = (10 / (height / 2)) * (y - height / 2);
+    const rotateY = -(10 / (width / 2)) * (x - width / 2);
 
-    card.style.transform = `perspective(${tiltConfig.perspective}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
+    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
 };
 const resetTilt = (e) => {
-    e.currentTarget.style.transform = `perspective(${tiltConfig.perspective}px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+    e.currentTarget.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
 };
 tiltElements.forEach(el => {
     el.addEventListener("mousemove", initTilt);
