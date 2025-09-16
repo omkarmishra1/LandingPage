@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Vibe & Flow</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="particles-js"></div>
+    <div class="spotlight"></div>
+
+    <header class="header">
+        <nav class="navbar">
+            <a href="index.html" class="nav-logo magnetic">Vibe & Flow</a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html#services" class="nav-link magnetic">Services</a></li>
+                <li class="nav-item"><a href="index.html#work" class="nav-link magnetic">Work</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link nav-cta magnetic">Contact</a></li>
+            </ul>
+            <div class="hamburger magnetic">
+                <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="content-section">
+             <div class="form-container">
+                <h1 class="section-title anim-text">Let's Create Something Amazing.</h1>
+                <p class="form-subtitle">Have a project in mind or just want to say hello? Fill out the form below and I'll get back to you as soon as possible.</p>
+
+                <form name="contact" method="POST" data-netlify="true" action="/thank-you">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Your Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Your Message</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="hero-cta magnetic">Send Message</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 Vibe & Flow. All Rights Reserved.</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
