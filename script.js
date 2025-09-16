@@ -10,64 +10,69 @@ document.querySelectorAll(".nav-link").forEach(n => n.addEventListener("click", 
     navMenu.classList.remove("active");
 }));
 
-// --- Custom Cursor ---
-const cursor = document.querySelector('.cursor');
+// --- Particles.js Background ---
+particlesJS({
+    "particles": {
+        "number": { "value": 60, "density": { "enable": true, "value_area": 800 } },
+        "color": { "value": "#ffffff" },
+        "shape": { "type": "circle" },
+        "opacity": { "value": 0.5, "random": true },
+        "size": { "value": 3, "random": true },
+        "line_linked": { "enable": true, "distance": 150, "color": "#ffffff", "opacity": 0.2, "width": 1 },
+        "move": { "enable": true, "speed": 1, "direction": "none", "out_mode": "out" }
+    },
+    "interactivity": {
+        "detect_on": "canvas",
+        "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" } },
+        "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 0.5 } }, "push": { "particles_nb": 4 } }
+    },
+    "retina_detect": true
+});
+
+// --- GSAP & Interactivity (Desktop Only) ---
 if (window.matchMedia("(pointer: fine)").matches) {
-    document.addEventListener('mousemove', e => {
-        cursor.setAttribute("style", "top: "+(e.pageY - scrollY)+"px; left: "+e.pageX+"px;")
+    // Spotlight Cursor
+    const spotlight = document.querySelector('.spotlight');
+    window.addEventListener('mousemove', e => {
+        gsap.to(spotlight, {
+            duration: 0.5,
+            x: e.clientX,
+            y: e.clientY,
+            ease: "power2.out"
+        });
     });
-    document.querySelectorAll('a, button, .hamburger, .project-card').forEach(el => {
-        el.addEventListener('mouseenter', () => cursor.classList.add('grow'));
-        el.addEventListener('mouseleave', () => cursor.classList.remove('grow'));
+
+    // Magnetic Elements
+    const magneticElements = document.querySelectorAll('.magnetic');
+    magneticElements.forEach(el => {
+        el.addEventListener('mousemove', (e) => {
+            const rect = el.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            gsap.to(el, { duration: 0.3, x: x * 0.2, y: y * 0.2, scale: 1.1 });
+        });
+        el.addEventListener('mouseleave', () => {
+            gsap.to(el, { duration: 0.3, x: 0, y: 0, scale: 1 });
+        });
+    });
+
+    // Animated Text on Hover
+    document.querySelectorAll('.anim-text').forEach(el => {
+        const text = el.textContent;
+        el.innerHTML = '';
+        text.split('').forEach(char => {
+            const span = document.createElement('span');
+            span.textContent = char;
+            if(char === ' ') span.style.width = '1rem';
+            el.appendChild(span);
+        });
+
+        gsap.from(el.children, {
+            y: 40,
+            opacity: 0,
+            duration: 0.5,
+            stagger: { amount: 0.5 },
+            scrollTrigger: { trigger: el, start: "top 85%" }
+        });
     });
 }
-
-
-// --- Scroll Animations with GSAP ---
-gsap.registerPlugin(ScrollTrigger);
-// Animate sections and cards
-document.querySelectorAll('.content-section, .grid-card').forEach(el => {
-    gsap.from(el.querySelectorAll('.section-container > *, h3, h4, p, img, .card-icon'), {
-        scrollTrigger: {
-            trigger: el,
-            start: "top 85%",
-            end: "bottom 15%",
-            toggleActions: "play none none none"
-        },
-        opacity: 0,
-        y: 40,
-        duration: 0.8,
-        stagger: 0.1,
-        ease: "power3.out"
-    });
-});
-// Animate hero on load
-gsap.from('.anim-on-load', {
-    opacity: 0,
-    y: 40,
-    duration: 1,
-    stagger: 0.3,
-    ease: "power3.out",
-    delay: 0.5
-});
-
-
-// --- 3D Tilt Effect for Project Cards ---
-const tiltElements = document.querySelectorAll("[data-tilt]");
-const initTilt = (e) => {
-    const card = e.currentTarget;
-    const { width, height, left, top } = card.getBoundingClientRect();
-    const x = e.clientX - left;
-    const y = e.clientY - top;
-    const rotateX = (10 / (height / 2)) * (y - height / 2);
-    const rotateY = -(10 / (width / 2)) * (x - width / 2);
-
-    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
-};
-const resetTilt = (e) => {
-    e.currentTarget.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
-};
-tiltElements.forEach(el => {
-    el.addEventListener("mousemove", initTilt);
-    el.addEventListener("mouseleave", resetTilt);
-});
