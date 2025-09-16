@@ -185,3 +185,70 @@ footer { text-align: center; padding: 2rem 5%; border-top: 1px solid var(--glass
     .hamburger { display: block; }
     .hero-title { font-size: 3rem; min-height: 80px; }
 }
+
+/* --- NEW: Improved Mobile & Responsive Styles --- */
+@media (max-width: 850px) {
+    /* Reduce padding to give content more space */
+    header {
+        padding: 1rem 5%;
+    }
+    nav {
+        border-radius: 10px;
+    }
+    .featured-work {
+        padding: 4rem 5%;
+    }
+
+    /* Make hero text more readable on mobile */
+    .hero-title {
+        font-size: 2.8rem; /* Smaller font size for h1 */
+        min-height: 0; /* Remove min-height */
+        margin-bottom: 1rem;
+    }
+    .hero-subtitle {
+        font-size: 1rem; /* Slightly smaller subtitle */
+        margin-bottom: 2rem;
+    }
+
+    /* --- Hamburger Menu Logic --- */
+    .hamburger {
+        display: block; /* Show the hamburger icon */
+        z-index: 100;
+    }
+
+    .nav-links {
+        position: fixed; /* Changed from absolute to fixed for better feel */
+        right: 0;
+        top: 0;
+        height: 100vh; /* Full screen height */
+        background-color: #1a1a1a; /* Darker background for the menu */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center; /* Center links vertically */
+        width: 60%;
+        transform: translateX(100%); /* Start off-screen */
+        transition: transform 0.5s ease-in-out;
+    }
+
+    .nav-links.nav-active {
+        transform: translateX(0%); /* Slide in from the right */
+    }
+
+    .nav-links li {
+        opacity: 0;
+        margin: 2rem 0; /* More spacing between links */
+    }
+
+    /* Animation for nav links popping in */
+    @keyframes navLinkFade {
+        from {
+            opacity: 0;
+            transform: translateX(50px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+}
