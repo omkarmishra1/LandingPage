@@ -3,13 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vibe & Flow | Web Development</title>
+    <title>Vibe & Flow | Interactive Web Development</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="cursor"></div>
+    <div class="aurora-background">
+        <div class="aurora-g-1"></div>
+        <div class="aurora-g-2"></div>
+        <div class="aurora-g-3"></div>
+        <div class="aurora-g-4"></div>
+    </div>
 
     <header class="header">
         <nav class="navbar">
@@ -20,62 +25,80 @@
                 <li class="nav-item"><a href="#contact" class="nav-link nav-cta">Contact</a></li>
             </ul>
             <div class="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
+                <span class="bar"></span><span class="bar"></span><span class="bar"></span>
             </div>
         </nav>
     </header>
 
     <main>
         <section class="hero">
-            <div class="hero-content">
-                <h1 class="hero-title">Websites That Work, Beautifully.</h1>
-                <p class="hero-subtitle">We build fast, responsive, and engaging digital experiences designed to help your business grow.</p>
-                <a href="#work" class="hero-cta">View Our Projects</a>
+            <div class="hero-content anim-on-load">
+                <h1 class="hero-title">Interactive Experiences, <br>Engineered for Impact.</h1>
+                <p class="hero-subtitle">We build fluid, animated, and highly interactive websites that leave a lasting impression.</p>
+                <a href="#work" class="hero-cta">Explore the work</a>
             </div>
         </section>
 
         <section id="services" class="content-section">
-            <h2 class="section-title">What We Do</h2>
-            <div class="grid-container">
-                <div class="grid-card">
-                    <h3>Web Design</h3>
-                    <p>Creating beautiful and intuitive user interfaces that are a joy to use.</p>
+            <div class="section-container">
+                <h2 class="section-title">Core Services</h2>
+                <div class="grid-container">
+                    <div class="grid-card">
+                        <h3>Dynamic Frontend</h3>
+                        <p>Engaging user interfaces with fluid animations and a focus on user experience.</p>
+                    </div>
+                    <div class="grid-card">
+                        <h3>Responsive Design</h3>
+                        <p>Websites that look and perform beautifully on any device, from phones to desktops.</p>
+                    </div>
+                    <div class="grid-card">
+                        <h3>Performance</h3>
+                        <p>Optimized for speed and efficiency to ensure a smooth, seamless experience.</p>
+                    </div>
                 </div>
-                <div class="grid-card">
-                    <h3>Development</h3>
-                    <p>Building fast, responsive, and reliable websites from the ground up.</p>
-                </div>
-                <div class="grid-card">
-                    <h3>Optimization</h3>
-                    <p>Optimizing your site for speed and search engines to attract more visitors.</p>
+            </div>
+        </section>
+        
+        <section id="skills" class="content-section">
+             <div class="section-container">
+                <h2 class="section-title">My Toolkit</h2>
+                <div class="skills-grid">
+                    <div class="skill-item">HTML5</div>
+                    <div class="skill-item">CSS3</div>
+                    <div class="skill-item">JavaScript</div>
+                    <div class="skill-item">React</div>
+                    <div class="skill-item">GSAP</div>
+                    <div class="skill-item">Figma</div>
                 </div>
             </div>
         </section>
 
         <section id="work" class="content-section">
-            <h2 class="section-title">Featured Work</h2>
-            <div class="grid-container">
-                <div class="grid-card project-card">
-                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070" alt="Project 1">
-                    <h4>Analytics Dashboard</h4>
-                </div>
-                <div class="grid-card project-card">
-                    <img src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?q=80&w=2070" alt="Project 2">
-                    <h4>E-commerce Platform</h4>
-                </div>
-                 <div class="grid-card project-card">
-                    <img src="https://images.unsplash.com/photo-1587440871875-191322ee64b0?q=80&w=2071" alt="Project 3">
-                    <h4>Branding Site</h4>
+            <div class="section-container">
+                <h2 class="section-title">Featured Work</h2>
+                <div class="grid-container">
+                    <div class="grid-card project-card" data-tilt>
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070" alt="Project 1">
+                        <h4>Analytics Dashboard</h4>
+                    </div>
+                    <div class="grid-card project-card" data-tilt>
+                        <img src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?q=80&w=2070" alt="Project 2">
+                        <h4>E-commerce Platform</h4>
+                    </div>
+                     <div class="grid-card project-card" data-tilt>
+                        <img src="https://images.unsplash.com/photo-1587440871875-191322ee64b0?q=80&w=2071" alt="Project 3">
+                        <h4>Branding Site</h4>
+                    </div>
                 </div>
             </div>
         </section>
         
         <section id="contact" class="content-section contact-section">
-            <h2 class="section-title">Get In Touch</h2>
-            <p>Ready to start a project? We'd love to hear from you.</p>
-            <a href="mailto:hello@vibeandflow.com" class="hero-cta">hello@vibeandflow.com</a>
+            <div class="section-container">
+                <h2 class="section-title">Let's Build Together</h2>
+                <p>Have a project in mind? I'd love to hear about it.</p>
+                <a href="mailto:hello@vibeandflow.com" class="hero-cta">hello@vibeandflow.com</a>
+            </div>
         </section>
     </main>
 
@@ -83,6 +106,8 @@
         <p>&copy; 2025 Vibe & Flow. All Rights Reserved.</p>
     </footer>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
