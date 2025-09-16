@@ -1,4 +1,19 @@
 document.addEventListener('DOMContentLoaded', () => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    // --- Header Scroll Effect ---
+    const header = document.querySelector('header');
+    ScrollTrigger.create({
+        start: 'top top',
+        end: 99999,
+        onUpdate: (self) => {
+            if (self.direction === 1 && self.progress > 0) {
+                header.classList.add('scrolled');
+            } else if (self.direction === -1 && self.progress < 0.01) {
+                header.classList.remove('scrolled');
+            }
+        }
+    });
 
     // --- Custom Cursor Logic ---
     const isTouchDevice = () => 'ontouchstart' in window || navigator.maxTouchPoints > 0;
@@ -14,14 +29,10 @@ document.addEventListener('DOMContentLoaded', () => {
             gsap.to(cursorOutline, { duration: 0.3, left: `${posX}px`, top: `${posY}px` });
         });
 
-        const linksAndButtons = document.querySelectorAll('a, .hamburger, .project-card');
+        const linksAndButtons = document.querySelectorAll('a, .hamburger');
         linksAndButtons.forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                gsap.to(cursorOutline, { duration: 0.3, scale: 1.7, backgroundColor: 'rgba(255, 193, 7, 0.3)' });
-            });
-            el.addEventListener('mouseleave', () => {
-                gsap.to(cursorOutline, { duration: 0.3, scale: 1, backgroundColor: 'rgba(255, 193, 7, 0.2)' });
-            });
+            el.addEventListener('mouseenter', () => { gsap.to(cursorOutline, { duration: 0.3, scale: 1.7, backgroundColor: 'rgba(255, 193, 7, 0.3)' }); });
+            el.addEventListener('mouseleave', () => { gsap.to(cursorOutline, { duration: 0.3, scale: 1, backgroundColor: 'rgba(255, 193, 7, 0.2)' }); });
         });
     }
 
@@ -34,9 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const y = e.clientY - rect.top - rect.height / 2;
             gsap.to(magneticButton, { duration: 0.3, x: x * 0.2, y: y * 0.2, scale: 1.1 });
         });
-        magneticButton.addEventListener('mouseleave', () => {
-            gsap.to(magneticButton, { duration: 0.3, x: 0, y: 0, scale: 1 });
-        });
+        magneticButton.addEventListener('mouseleave', () => { gsap.to(magneticButton, { duration: 0.3, x: 0, y: 0, scale: 1 }); });
     }
 
     // --- Hero Title Text Animation ---
@@ -49,7 +58,23 @@ document.addEventListener('DOMContentLoaded', () => {
         if (char === ' ') span.innerHTML = '&nbsp;';
         heroTitle.appendChild(span);
     });
-    gsap.fromTo(heroTitle.children, { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 0.5, stagger: 0.03, ease: "power2.out" });
+    gsap.from(heroTitle.children, { autoAlpha: 0, y: 30, duration: 0.5, stagger: 0.03, ease: "power2.out" });
+
+    // --- Universal Scroll Animation ---
+    const animatedElements = document.querySelectorAll('.anim-on-scroll');
+    animatedElements.forEach(el => {
+        gsap.from(el, {
+            scrollTrigger: {
+                trigger: el,
+                start: 'top 85%',
+                toggleActions: 'play none none none'
+            },
+            opacity: 0,
+            y: 50,
+            duration: 0.8,
+            ease: 'power3.out'
+        });
+    });
 
     // --- Mobile Navigation Menu ---
     const hamburger = document.querySelector('.hamburger');
