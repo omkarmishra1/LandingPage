@@ -3,23 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vibe & Flow | Interactive Experiences</title>
+    <title>Vibe & Flow | Interactive Web Development</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div id="particles-js"></div>
-    <div class="spotlight"></div>
+    <div class="blob-cursor"></div>
 
     <header class="header">
         <nav class="navbar">
-            <a href="#" class="nav-logo magnetic">Vibe & Flow</a>
+            <a href="#" class="nav-logo">Vibe & Flow</a>
             <ul class="nav-menu">
-                <li class="nav-item"><a href="#services" class="nav-link magnetic">Services</a></li>
-                <li class="nav-item"><a href="#work" class="nav-link magnetic">Work</a></li>
-                <li class="nav-item"><a href="#contact" class="nav-link nav-cta magnetic">Contact</a></li>
+                <li class="nav-item"><a href="#services" class="nav-link">Services</a></li>
+                <li class="nav-item"><a href="#work" class="nav-link">Work</a></li>
+                <li class="nav-item"><a href="#contact" class="nav-link nav-cta">Contact</a></li>
             </ul>
-            <div class="hamburger magnetic">
+            <div class="hamburger">
                 <span class="bar"></span><span class="bar"></span><span class="bar"></span>
             </div>
         </nav>
@@ -28,14 +27,14 @@
     <main>
         <section class="hero">
             <div class="hero-content">
-                <h1 class="hero-title anim-text">Websites That Feel Alive.</h1>
-                <p class="hero-subtitle">We don't just build websites. We build dynamic, interactive digital experiences that engage, captivate, and leave a lasting impression.</p>
-                <a href="#work" class="hero-cta magnetic">See the magic</a>
+                <h1 class="hero-title">Websites That Feel Alive.</h1>
+                <p class="hero-subtitle">I don't just build websites. I build dynamic, interactive digital experiences that engage, captivate, and leave a lasting impression.</p>
+                <a href="#work" class="hero-cta">See the magic</a>
             </div>
         </section>
 
         <section id="services" class="content-section">
-            <h2 class="section-title anim-text">Core Abilities</h2>
+            <h2 class="section-title">Core Abilities</h2>
             <div class="grid-container">
                 <div class="grid-card">
                     <h3>Interactive Frontend</h3>
@@ -52,28 +51,65 @@
             </div>
         </section>
 
+        <section id="process" class="content-section">
+            <h2 class="section-title">My Process</h2>
+            <div class="process-timeline">
+                <div class="timeline-item">
+                    <div class="timeline-step">1</div>
+                    <div class="timeline-content">
+                        <h3>Discovery & Strategy</h3>
+                        <p>We start by understanding your goals, audience, and vision to create a clear roadmap for success.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-step">2</div>
+                    <div class="timeline-content">
+                        <h3>Design & Prototyping</h3>
+                        <p>I create wireframes and high-fidelity mockups in Figma, focusing on intuitive UI and a beautiful user experience.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-step">3</div>
+                    <div class="timeline-content">
+                        <h3>Development & Animation</h3>
+                        <p>This is where the magic happens. I build a fast, responsive site and bring the design to life with animations.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-step">4</div>
+                    <div class="timeline-content">
+                        <h3>Launch & Support</h3>
+                        <p>After thorough testing, we deploy the site. I remain available for support and future enhancements.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section id="work" class="content-section">
-            <h2 class="section-title anim-text">Experiments</h2>
+            <h2 class="section-title">Experiments</h2>
             <div class="grid-container">
                 <div class="grid-card project-card">
                     <img src="https://images.pexels.com/photos/326503/pexels-photo-326503.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Project 1">
                     <h4>Kinetic Typography</h4>
+                    <p class="project-description">An exploration of animated text effects using JavaScript and CSS to create an engaging visual narrative.</p>
                 </div>
                 <div class="grid-card project-card">
                     <img src="https://images.pexels.com/photos/1779487/pexels-photo-1779487.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Project 2">
                     <h4>WebGL Particles</h4>
+                    <p class="project-description">A high-performance interactive background using WebGL for thousands of reactive particles.</p>
                 </div>
                  <div class="grid-card project-card">
                     <img src="https://images.pexels.com/photos/38544/imac-apple-mockup-app-38544.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Project 3">
                     <h4>Interactive Infographic</h4>
+                    <p class="project-description">A data visualization project where users can interact with charts and graphs to explore information.</p>
                 </div>
             </div>
         </section>
         
         <section id="contact" class="content-section contact-section">
-            <h2 class="section-title anim-text">Have an Idea?</h2>
+            <h2 class="section-title">Have an Idea?</h2>
             <p>Let's collaborate to bring your vision to life.</p>
-            <a href="mailto:hello@vibeandflow.com" class="hero-cta magnetic">Start a Conversation</a>
+            <a href="mailto:omarmishra25@gmail.com" class="hero-cta">omarmishra25@gmail.com</a>
         </section>
     </main>
 
@@ -82,7 +118,7 @@
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

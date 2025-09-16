@@ -10,69 +10,37 @@ document.querySelectorAll(".nav-link").forEach(n => n.addEventListener("click", 
     navMenu.classList.remove("active");
 }));
 
-// --- Particles.js Background ---
-particlesJS({
-    "particles": {
-        "number": { "value": 60, "density": { "enable": true, "value_area": 800 } },
-        "color": { "value": "#ffffff" },
-        "shape": { "type": "circle" },
-        "opacity": { "value": 0.5, "random": true },
-        "size": { "value": 3, "random": true },
-        "line_linked": { "enable": true, "distance": 150, "color": "#ffffff", "opacity": 0.2, "width": 1 },
-        "move": { "enable": true, "speed": 1, "direction": "none", "out_mode": "out" }
-    },
-    "interactivity": {
-        "detect_on": "canvas",
-        "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" } },
-        "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 0.5 } }, "push": { "particles_nb": 4 } }
-    },
-    "retina_detect": true
-});
-
-// --- GSAP & Interactivity (Desktop Only) ---
+// --- GSAP & Interactivity ---
+gsap.registerPlugin(ScrollTrigger);
 if (window.matchMedia("(pointer: fine)").matches) {
-    // Spotlight Cursor
-    const spotlight = document.querySelector('.spotlight');
-    window.addEventListener('mousemove', e => {
-        gsap.to(spotlight, {
+    // NEW: Blob Cursor Effect
+    const blobCursor = document.querySelector('.blob-cursor');
+    window.addEventListener('mousemove', (e) => {
+        gsap.to(blobCursor, {
             duration: 0.5,
             x: e.clientX,
             y: e.clientY,
             ease: "power2.out"
         });
     });
-
-    // Magnetic Elements
-    const magneticElements = document.querySelectorAll('.magnetic');
-    magneticElements.forEach(el => {
-        el.addEventListener('mousemove', (e) => {
-            const rect = el.getBoundingClientRect();
-            const x = e.clientX - rect.left - rect.width / 2;
-            const y = e.clientY - rect.top - rect.height / 2;
-            gsap.to(el, { duration: 0.3, x: x * 0.2, y: y * 0.2, scale: 1.1 });
-        });
-        el.addEventListener('mouseleave', () => {
-            gsap.to(el, { duration: 0.3, x: 0, y: 0, scale: 1 });
-        });
+    
+    document.querySelectorAll('a, button, .hamburger, .grid-card').forEach(el => {
+        el.addEventListener('mouseenter', () => blobCursor.classList.add('hovered'));
+        el.addEventListener('mouseleave', () => blobCursor.classList.remove('hovered'));
     });
 
-    // Animated Text on Hover
-    document.querySelectorAll('.anim-text').forEach(el => {
-        const text = el.textContent;
-        el.innerHTML = '';
-        text.split('').forEach(char => {
-            const span = document.createElement('span');
-            span.textContent = char;
-            if(char === ' ') span.style.width = '1rem';
-            el.appendChild(span);
-        });
-
-        gsap.from(el.children, {
-            y: 40,
+    // Animate sections with ScrollTrigger
+    document.querySelectorAll('.content-section').forEach(section => {
+        gsap.from(section, {
+            scrollTrigger: {
+                trigger: section,
+                start: "top 85%",
+                toggleActions: "play none none none"
+            },
             opacity: 0,
-            duration: 0.5,
-            stagger: { amount: 0.5 },
-            scrollTrigger: { trigger: el, start: "top 85%" }
+            y: 50,
+            duration: 0.8,
+            ease: "power3.out"
         });
     });
 }
