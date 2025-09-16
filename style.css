@@ -11,7 +11,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    cursor: none; /* Hide default cursor */
+    cursor: none;
 }
 
 body {
@@ -22,7 +22,6 @@ body {
     overflow-x: hidden;
 }
 
-/* NEW: Custom Cursor Styles */
 .cursor-dot, .cursor-outline {
     pointer-events: none;
     position: fixed;
@@ -46,7 +45,6 @@ body {
     transition: all 0.08s linear;
 }
 
-/* Header & Nav */
 header {
     padding: 1.5rem 8%;
     position: fixed;
@@ -78,7 +76,6 @@ nav .nav-links li a {
     position: relative;
     padding-bottom: 5px;
 }
-/* NEW: Link grow effect on hover */
 .link-grow::after {
     content: '';
     position: absolute;
@@ -99,7 +96,6 @@ nav .nav-links li a {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Hero Section */
 .hero {
     min-height: 100vh;
     display: flex;
@@ -126,7 +122,7 @@ nav .nav-links li a {
     line-height: 1.1;
     margin-bottom: 1.5rem;
     color: #fff;
-    min-height: 120px; /* Space for text animation */
+    min-height: 120px;
 }
 .hero-subtitle {
     font-size: 1.2rem;
@@ -134,7 +130,6 @@ nav .nav-links li a {
     margin: 0 auto 2.5rem auto;
 }
 
-/* Featured Work Section */
 .featured-work { padding: 6rem 8%; text-align: center; }
 .section-title { font-size: 3rem; margin-bottom: 3rem; }
 .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
@@ -172,83 +167,59 @@ nav .nav-links li a {
 .card-content h3 { margin-bottom: 0.2rem; }
 .card-content p { color: var(--primary-accent); }
 
-/* Footer */
 footer { text-align: center; padding: 2rem 5%; border-top: 1px solid var(--glass-border); }
 
-/* Responsive (Hamburger Menu) */
-.hamburger { display: none; }
-.line { width: 25px; height: 2px; background-color: var(--text-color); margin: 5px; }
-
+/* --- NEW & MORE AGGRESSIVE MOBILE STYLES --- */
 @media (max-width: 850px) {
-    nav .nav-links { display: none; } /* Simplified for this example */
-    nav { border-radius: 10px; }
-    .hamburger { display: block; }
-    .hero-title { font-size: 3rem; min-height: 80px; }
-}
+    body {
+        -webkit-text-size-adjust: 100%; /* Prevents text scaling on iOS */
+    }
 
-/* --- NEW: Improved Mobile & Responsive Styles --- */
-@media (max-width: 850px) {
     /* Reduce padding to give content more space */
-    header {
-        padding: 1rem 5%;
+    header, .featured-work {
+        padding: 1rem 5% !important;
     }
-    nav {
-        border-radius: 10px;
+    .hero {
+        padding: 4rem 5% !important;
     }
-    .featured-work {
-        padding: 4rem 5%;
+    
+    /* Force grid to stack into a single column */
+    .project-grid {
+        grid-template-columns: 1fr !important; /* Single column */
     }
 
     /* Make hero text more readable on mobile */
     .hero-title {
-        font-size: 2.8rem; /* Smaller font size for h1 */
-        min-height: 0; /* Remove min-height */
+        font-size: 2.5rem !important; /* Force smaller font size */
+        line-height: 1.2 !important; /* Adjust line height */
+        min-height: 0;
         margin-bottom: 1rem;
     }
     .hero-subtitle {
-        font-size: 1rem; /* Slightly smaller subtitle */
+        font-size: 1rem !important; /* Force smaller subtitle */
         margin-bottom: 2rem;
     }
 
     /* --- Hamburger Menu Logic --- */
-    .hamburger {
-        display: block; /* Show the hamburger icon */
-        z-index: 100;
-    }
-
+    .hamburger { display: block; z-index: 100; }
     .nav-links {
-        position: fixed; /* Changed from absolute to fixed for better feel */
+        position: fixed;
         right: 0;
         top: 0;
-        height: 100vh; /* Full screen height */
-        background-color: #1a1a1a; /* Darker background for the menu */
+        height: 100vh;
+        background-color: #1a1a1a;
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center; /* Center links vertically */
+        justify-content: center;
         width: 60%;
-        transform: translateX(100%); /* Start off-screen */
+        transform: translateX(100%);
         transition: transform 0.5s ease-in-out;
     }
-
-    .nav-links.nav-active {
-        transform: translateX(0%); /* Slide in from the right */
-    }
-
-    .nav-links li {
-        opacity: 0;
-        margin: 2rem 0; /* More spacing between links */
-    }
-
-    /* Animation for nav links popping in */
+    .nav-links.nav-active { transform: translateX(0%); }
+    .nav-links li { opacity: 0; margin: 2rem 0; }
     @keyframes navLinkFade {
-        from {
-            opacity: 0;
-            transform: translateX(50px);
-        }
-        to {
-            opacity: 1;
-            transform: translateX(0);
-        }
+        from { opacity: 0; transform: translateX(50px); }
+        to { opacity: 1; transform: translateX(0); }
     }
 }
