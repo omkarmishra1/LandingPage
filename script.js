@@ -17,10 +17,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const linksAndButtons = document.querySelectorAll('a, .hamburger, .project-card');
         linksAndButtons.forEach(el => {
             el.addEventListener('mouseenter', () => {
-                gsap.to(cursorOutline, { duration: 0.3, scale: 1.7, backgroundColor: 'rgba(0, 242, 234, 0.4)' });
+                gsap.to(cursorOutline, { duration: 0.3, scale: 1.7, backgroundColor: 'rgba(255, 193, 7, 0.3)' });
             });
             el.addEventListener('mouseleave', () => {
-                gsap.to(cursorOutline, { duration: 0.3, scale: 1, backgroundColor: 'rgba(0, 242, 234, 0.2)' });
+                gsap.to(cursorOutline, { duration: 0.3, scale: 1, backgroundColor: 'rgba(255, 193, 7, 0.2)' });
             });
         });
     }
