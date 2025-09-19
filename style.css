@@ -1,8 +1,8 @@
 :root {
-    --bg-color: #030014;
+    --bg-color: #0a1b55;
     --primary-color: #ffffff;
     --secondary-color: #a7a7a7;
-    --accent-color: #9400d3;
+    --accent-color: #ff00cc;
     --glow-color: rgba(148, 0, 211, 0.5);
 }
 
@@ -10,24 +10,14 @@
 html { scroll-behavior: smooth; }
 body { font-family: 'Poppins', sans-serif; color: var(--primary-color); background-color: var(--bg-color); line-height: 1.6; overflow-x: hidden; }
 
-/* --- NEW Interactive Blob Cursor --- */
-.blob-cursor {
-    position: fixed;
-    width: 40px;
-    height: 40px;
-    background: linear-gradient(180deg, var(--accent-color), #ff00c8);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 1001;
-    transform: translate(-50%, -50%);
-    filter: blur(15px);
-    opacity: 0.7;
-    transition: width 0.3s, height 0.3s;
-}
+/* --- Particles.js Background --- */
+#particles-js { position: fixed; width: 100%; height: 100%; z-index: -1; }
+
+/* --- Interactive Blob Cursor --- */
+.blob-cursor { position: fixed; width: 40px; height: 40px; background: linear-gradient(180deg, var(--accent-color), #ff00c8); border-radius: 50%; pointer-events: none; z-index: 1001; transform: translate(-50%, -50%); filter: blur(15px); opacity: 0.7; transition: width 0.3s, height 0.3s; }
 .blob-cursor.hovered { width: 60px; height: 60px; }
 @media (pointer: coarse) { .blob-cursor { display: none; } }
 @media (pointer: fine) { * { cursor: none; } }
-
 
 /* --- Mobile-First Base Styles --- */
 .header { background-color: rgba(3, 0, 20, 0.5); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
@@ -46,28 +36,58 @@ body { font-family: 'Poppins', sans-serif; color: var(--primary-color); backgrou
 .bar { display: block; width: 25px; height: 3px; margin: 5px auto; transition: all 0.3s ease-in-out; background-color: var(--primary-color); }
 
 .hero { display: flex; flex-direction: column; justify-content: center; text-align: center; min-height: 90vh; padding: 4rem 1.5rem; }
-.hero-title { font-size: 2.5rem; font-weight: 700; line-height: 1.2; margin-bottom: 1rem; opacity: 0; animation: fadeIn 1s 0.5s forwards; }
-.hero-subtitle { font-size: 1rem; color: var(--secondary-color); max-width: 500px; margin: 0 auto 2rem auto; opacity: 0; animation: fadeIn 1s 0.8s forwards; }
-.hero-cta { display: inline-block; background-color: var(--accent-color); color: var(--primary-color); padding: 1rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; transition: transform 0.3s, box-shadow 0.3s; opacity: 0; animation: fadeIn 1s 1.1s forwards; }
+.hero-title { font-size: 2.5rem; font-weight: 700; line-height: 1.2; margin-bottom: 1rem; clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+.hero-title span { display: inline-block; }
+.hero-subtitle { font-size: 1rem; color: var(--secondary-color); max-width: 500px; margin: 0 auto 2rem auto; }
+.hero-cta { display: inline-block; background-color: var(--accent-color); color: var(--primary-color); padding: 1rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; transition: transform 0.3s, box-shadow 0.3s; }
 .hero-cta:hover { transform: scale(1.05); box-shadow: 0 0 25px var(--glow-color); }
-@keyframes fadeIn { to { opacity: 1; } }
 
 .content-section { padding: 4rem 1.5rem; }
 .section-title { text-align: center; font-size: 2rem; margin-bottom: 2rem; }
 .grid-container { display: grid; gap: 1.5rem; }
-.grid-card { background: linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)); padding: 2rem; border-radius: 15px; border: 1px solid rgba(255, 255, 255, 0.1); transition: transform 0.3s, box-shadow 0.3s; }
-.grid-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+.grid-card { background: linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)); padding: 2rem; border-radius: 15px; border: 1px solid rgba(255, 255, 255, 0.1); }
 .grid-card h3 { color: var(--accent-color); margin-bottom: 1rem; }
-.project-card img { width: 100%; height: 200px; object-fit: cover; border-radius: 5px; margin-bottom: 1rem; }
-.project-description { color: var(--secondary-color); font-size: 0.9rem; margin-top: 1rem; }
 
-/* NEW: Process Timeline Styles */
-.process-timeline { position: relative; max-width: 800px; margin: 0 auto; }
-.timeline-item { position: relative; padding: 1rem 0 2rem 2rem; border-left: 2px solid rgba(255, 255, 255, 0.2); }
-.timeline-item:last-child { border-left: 2px solid transparent; }
-.timeline-step { position: absolute; left: -15px; top: 1rem; width: 30px; height: 30px; border-radius: 50%; background-color: var(--accent-color); color: var(--primary-color); display: flex; align-items: center; justify-content: center; font-weight: bold; }
-.timeline-content h3 { color: var(--accent-color); }
-.timeline-content p { color: var(--secondary-color); }
+.project-card {
+    padding: 0; /* Remove padding to let image fill the card */
+    position: relative;
+    overflow: hidden;
+}
+.project-card .project-content {
+    padding: 2rem;
+    position: relative; /* Keep content flow */
+}
+.project-card img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+}
+.project-card .project-info {
+    position: absolute;
+    bottom: 2rem;
+    left: 2rem;
+    right: 2rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.project-card:hover img {
+    transform: scale(1.1);
+    opacity: 0.1;
+}
+.project-card:hover .project-info {
+    opacity: 1;
+    transform: translateY(0);
+}
+.project-description { color: var(--secondary-color); font-size: 0.9rem; margin-top: 0.5rem; }
+
+.testimonial-card { background: linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)); padding: 2rem; border-radius: 15px; border: 1px solid rgba(255, 255, 255, 0.1); max-width: 700px; margin: 0 auto; text-align: center; }
+.testimonial-text { font-size: 1.1rem; font-style: italic; color: var(--secondary-color); margin-bottom: 1rem; }
+.testimonial-author { font-weight: 700; color: var(--primary-color); }
 
 .contact-section { text-align: center; }
 .contact-section p { margin-bottom: 1.5rem; }
@@ -84,6 +104,7 @@ body { font-family: 'Poppins', sans-serif; color: var(--primary-color); backgrou
     .hero-subtitle { font-size: 1.2rem; }
     .section-title { font-size: 2.5rem; }
     .grid-container { grid-template-columns: repeat(3, 1fr); }
+    .project-card { height: 300px; /* Give project cards a fixed height on desktop */ }
 }
 
 /* --- Desktop Styles --- */
