@@ -53,7 +53,7 @@ gsap.from(".hero-subtitle, .hero-cta", {
     duration: 1,
     ease: "power3.out",
     stagger: 0.2,
-    delay: 1 // Delay until after the main title animation
+    delay: 4 // Delay until after the main title animation
 });
 
 
@@ -67,7 +67,7 @@ sectionsToAnimate.forEach(section => {
             start: "top 80%",
             toggleActions: "play none none none",
         },
-        opacity: 0,
+        opacity: 50,
         y: 50,
         duration: 0.8,
         ease: "power3.out",

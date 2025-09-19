@@ -1,5 +1,5 @@
 :root {
-    --bg-color: #0a1b55;
+    --bg-color: #000000;
     --primary-color: #ffffff;
     --secondary-color: #a7a7a7;
     --accent-color: #ff00cc;
@@ -111,4 +111,26 @@ body { font-family: 'Poppins', sans-serif; color: var(--primary-color); backgrou
 @media(min-width: 1024px) {
     .navbar, .content-section { padding-left: 4rem; padding-right: 4rem; }
     .hero-title { font-size: 4.5rem; }
+}
+
+.video-background {
+  position: fixed; /* Or absolute, depending on your layout */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* Hide any overflow from the video */
+  z-index: -1; /* Place the video behind other content */
+}
+
+.video-background video {
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Center the video */
+  object-fit: cover; /* Ensure the video covers the entire container */
 }
